@@ -13,10 +13,10 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category_book', function (Blueprint $table) {
             $table->integer('book_id')->references('id')->on('books');
-            $table->integer('category_list_id')->references('id')->on('category_lists');
-            $table->primary('book_id', 'category_list_id');
+            $table->integer('category_id')->references('id')->on('categories');
+            $table->primary('book_id', 'category_id');
             $table->timestamps();
         });
     }
