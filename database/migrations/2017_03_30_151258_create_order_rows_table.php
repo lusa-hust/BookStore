@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartsTable extends Migration
+class CreateOrderRowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,16 @@ class CreateCartsTable extends Migration
     public function up()
     {
         Schema::create('order_rows', function (Blueprint $table) {
-            $table->integer('book_id')->references('id')->on('books');
-            $table->integer('order_id')->references('id')->on('orders');
-            $table->integer('qty');
+            $table->unsignedInteger('book_id');
+            $table->unsignedInteger('order_id');
+            $table->unsignedInteger('qty');
             $table->primary('book_id', 'order_id');
             $table->timestamps();
+        });
+
+        Schema::table('order_rows', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 

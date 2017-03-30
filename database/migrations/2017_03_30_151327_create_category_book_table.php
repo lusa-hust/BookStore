@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateCategoryBookTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,15 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('category_book', function (Blueprint $table) {
-            $table->integer('book_id')->references('id')->on('books');
-            $table->integer('category_id')->references('id')->on('categories');
+            $table->unsignedInteger('book_id');
+            $table->unsignedInteger('category_id');
             $table->primary('book_id', 'category_id');
             $table->timestamps();
+        });
+
+        Schema::table('category_book', function (Blueprint $table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
