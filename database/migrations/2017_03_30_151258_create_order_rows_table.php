@@ -34,6 +34,6 @@ class CreateOrderRowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('order_rows');
     }
 }
