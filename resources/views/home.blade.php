@@ -46,14 +46,18 @@
 <div class="container home-container">
     <div class="row">
         <div class="col-xs-3 col-md-2 category-container">
-            <ul>
-                <li>
-                    <a href="#">Category 1</a>
-                </li>
-                <li>
-                    <a href="#">Category 2</a>
-                </li>
-            </ul>            
+            @if ($categories->isEmpty())
+                <div>There is no category yet</div>
+            @else
+                <ul>
+                    <li>
+                        <a href="#">Category 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Category 2</a>
+                    </li>
+                </ul>
+            @endif           
         </div>
         <div class="col-xs-9 col-md-10">
             <div class="row">
