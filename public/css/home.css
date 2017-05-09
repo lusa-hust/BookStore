@@ -1,0 +1,20 @@
+.home-container {
+    margin-top: 20px;
+}
+
+.category-container {
+    min-height: 500px;
+    border-right: 1px solid #CCCCCC;
+}
+
+.bookcover-block {
+    margin-bottom: 30px;
+}
+
+.bookcover-container {
+    text-align: center;
+}
+
+.load-more {
+    text-align: center;
+}

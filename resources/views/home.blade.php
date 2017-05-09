@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('style')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,18 +17,18 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="/images/bookcover/banner1.png" alt="Los Angeles">
+            <img src="/images/banner/banner1.png" alt="Los Angeles">
         </div>
 
         <div class="item">
-            <img src="/images/bookcover/banner2.jpg" alt="Chicago">
+            <img src="/images/banner/banner2.jpg" alt="Chicago">
         </div>
 
         <div class="item">
-            <img src="/images/bookcover/banner3.jpg" alt="New York">
+            <img src="/images/banner/banner3.jpg" alt="New York">
         </div>
         <div class="item">
-            <img src="/images/bookcover/banner4.jpg" alt="New York">
+            <img src="/images/banner/banner4.jpg" alt="New York">
         </div>
     </div>
 
@@ -39,15 +43,73 @@
     </a>
 </div>
 
-<div class="container">
+<div class="container home-container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
+        <div class="col-xs-3 col-md-2 category-container">
+            <ul>
+                <li>
+                    <a href="#">Category 1</a>
+                </li>
+                <li>
+                    <a href="#">Category 2</a>
+                </li>
+            </ul>            
+        </div>
+        <div class="col-xs-9 col-md-10">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                    <div class="bookcover-container">
+                        <a href="#">
+                            <img src="/images/bookcover/cover1.jpg" alt="book title">
+                            <div class="book-title">
+                                Book title
+                            </div>
+                        </a>
+                    </div>
                 </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                    <div class="bookcover-container">
+                        <a href="#">
+                            <img src="/images/bookcover/cover1.jpg" alt="book title">
+                            <div class="book-title">
+                                Book title
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                    <div class="bookcover-container">
+                        <a href="#">
+                            <img src="/images/bookcover/cover1.jpg" alt="book title">
+                            <div class="book-title">
+                                Book title
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                    <div class="bookcover-container">
+                        <a href="#">
+                            <img src="/images/bookcover/cover1.jpg" alt="book title">
+                            <div class="book-title">
+                                Book title
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 bookcover-block">
+                    <div class="bookcover-container">
+                        <a href="#">
+                            <img src="/images/bookcover/cover1.jpg" alt="book title">
+                            <div class="book-title">
+                                Book title
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row load-more">
+                <a href="#">Load more...</a>
             </div>
         </div>
     </div>
