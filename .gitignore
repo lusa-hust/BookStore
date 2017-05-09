@@ -33,3 +33,4 @@ Homestead.yaml
 
 # User-specific stuff:
 .idea/
+.vscode/
