@@ -46,7 +46,7 @@
 <div class="container home-container">
     <div class="row">
         <div class="col-xs-3 col-md-2 category-container">
-            @if ($categories->isEmpty())
+            @if (isset ($categories) && $categories->isEmpty())
                 <div>There is no category yet</div>
             @else
                 <ul>
