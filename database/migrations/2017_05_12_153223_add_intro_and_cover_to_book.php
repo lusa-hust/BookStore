@@ -14,7 +14,7 @@ class AddIntroAndCoverToBook extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('introduction');
+            $table->text('introduction');
         });
     }
 
