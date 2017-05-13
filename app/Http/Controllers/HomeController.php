@@ -28,12 +28,10 @@ class HomeController extends Controller
     {
         $category_id = intval($category_id);
         $categories = Category::all();
-
         $books = $this->get_books($category_id, 1);
 
-        return view('home/home')->with('categories', $categories)
-                                ->with("books", $books)
-                                ->with('category_id', $category_id);
+        return view('home/home', compact('categories', 'books', 'category_id'));
+
     }
 
 
@@ -98,5 +96,6 @@ class HomeController extends Controller
         }
 
         return $books;
+
     }
 }
