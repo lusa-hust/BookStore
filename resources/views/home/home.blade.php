@@ -53,7 +53,11 @@
                 <ul>
                     @foreach ($categories as $category)
                     <li>
-                        <a href="#">{{$category->name}}</a>
+                        @if ($category->id == $category_id)
+                            <a class="link_selected" href="/home/{{$category->id}}">{{$category->name}}</a>
+                        @else
+                            <a href="/home/{{$category->id}}">{{$category->name}}</a>
+                        @endif
                     </li>
                     @endforeach
                 </ul>

@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home/{category_id?}', 'HomeController@index');
 
 Route::get('/db/up', 'Initialization@up');

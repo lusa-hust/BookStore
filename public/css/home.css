@@ -22,3 +22,7 @@
 .book-title {
     height: 60px;
 }
+
+.link_selected {
+    color: hotpink;
+}
