@@ -45,7 +45,7 @@ class Initialization extends Controller
                         'author' => $book->author,
                         'price' => (int) $book->price,
                         'qty' => rand(3, 100),
-                        'introduction' => $book->intro
+                        'description' => $book->intro
                     ]);
 
                     $bookrc->categories()->attach($category->id);
