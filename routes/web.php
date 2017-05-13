@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+Route::get('/', function (){
+    return Redirect::route('home');
+});
+
+
 
 Route::get('/db/up', 'Initialization@up');
