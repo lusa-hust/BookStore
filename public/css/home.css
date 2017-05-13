@@ -18,3 +18,7 @@
 .load-more {
     text-align: center;
 }
+
+.book-title {
+    height: 60px;
+}
