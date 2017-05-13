@@ -67,13 +67,17 @@
             <div class="row">
                 <div class="col-md-12"><b>Best seller books:</b></br></div>
             </div>
-            <div class="row">
+            <div class="row book-list">
                 @each('home.bookcover', $books, 'book')
             </div>
             <div class="row load-more">
-                <a href="#">Load more...</a>
+                <a class="ajax-load-more" data-page="2" data-category={{$category_id}} href="#">Load more...</a>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/home.js') }}"></script>
 @endsection
