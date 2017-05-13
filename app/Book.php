@@ -9,7 +9,7 @@ class Book extends Model
     protected $table = 'books';
 
     protected $fillable = [
-        'title', 'author', 'price', 'qty'
+        'title', 'author', 'price', 'qty', 'introduction'
     ];
 
     public function reviews()
