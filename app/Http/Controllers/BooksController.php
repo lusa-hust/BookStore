@@ -9,6 +9,15 @@ use Exception;
 
 class BooksController extends Controller
 {
+
+    /**
+     * BooksController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.checkAdmin')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *

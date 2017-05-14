@@ -31,10 +31,7 @@ Route::get('/db/up', 'Initialization@up');
 Route::get('/books/{book}', ['as' => 'books.show', 'uses' => 'BooksController@show']);
 
 
-Route::group(['middleware' => 'auth.checkAdmin'], function () {
+Route::post('/books', ['as' => 'books.store', 'uses' => 'BooksController@store']);
+Route::put('/books/{book}', ['as' => 'books.update', 'uses' => 'BooksController@update']);
+Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksController@destroy']);
 
-    Route::post('/books', ['as' => 'books.store', 'uses' => 'BooksController@store']);
-    Route::put('/books/{book}', ['as' => 'books.update', 'uses' => 'BooksController@update']);
-    Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksController@destroy']);
-
-});
