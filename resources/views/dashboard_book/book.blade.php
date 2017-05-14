@@ -22,7 +22,8 @@
     		<div class="row">
     			<div class="col-xs-12">
     				<div class="pull-left">
-	    				<form class="form-inline">
+	    				<form action="/dashboard/book/search" method="POST" class="form-inline">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 						  	<div class="form-group">
 						    	<input type="text" class="form-control dashboard-search" name="keyword" placeholder="Search a user by name or email">
 						  	</div>
@@ -59,5 +60,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/db_book.js') }}"></script>
 @endsection
