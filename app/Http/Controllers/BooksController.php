@@ -54,6 +54,14 @@ class BooksController extends Controller
 
         $book->save();
 
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'book' => $book
+            ], 201);
+        }
+
+
         return redirect()->back()->with('flash', 'Book has been Created!');
     }
 
@@ -66,6 +74,15 @@ class BooksController extends Controller
     public function show(Book $book)
     {
         $reviews = $book->reviews;
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'book' => $book,
+                'reviews' => $reviews
+            ]);
+        }
+
         return view('books.show', compact('book', 'reviews'));
     }
 
@@ -77,7 +94,7 @@ class BooksController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+
     }
 
     /**
@@ -89,7 +106,30 @@ class BooksController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|',
+            'author' => 'required',
+            'price' => 'required|numeric|min:0',
+            'qty' => 'required|integer|min:1',
+            'description' => 'nullable'
+        ]);
+
+        $book->update([
+            'price' => request('price'),
+            'qty' => request('qty'),
+            'description' => request('description'),
+        ]);
+        $book->save();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'book' => $book
+            ]);
+        }
+
+
+        return redirect()->back()->with('flash', 'Book has been Updated !');
     }
 
     /**
@@ -101,10 +141,12 @@ class BooksController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
+
         if (request()->wantsJson()) {
             return response([], 204);
         }
-        return redirect()->back();
+
+        return redirect()->back()->with('flash', 'Book has been Deleted!');
 
     }
 }
