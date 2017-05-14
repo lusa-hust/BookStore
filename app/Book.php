@@ -12,9 +12,20 @@ class Book extends Model
         'title', 'author', 'price', 'qty', 'description'
     ];
 
+    /**
+     * Add a review to the book.
+     *
+     * @param  array review
+     * @return Reply
+     */
+    public function addReview($review)
+    {
+        return $this->reviews()->create($review);
+    }
+
     public function reviews()
     {
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review')->orderBy('created_at', 'desc');
     }
 
     public function orderRows()

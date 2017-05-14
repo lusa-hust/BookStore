@@ -10,7 +10,7 @@ class Review extends Model
 
 
     protected $fillable = [
-        'review', 'vote'
+        'review', 'vote', 'user_id'
     ];
 
     public function user() {

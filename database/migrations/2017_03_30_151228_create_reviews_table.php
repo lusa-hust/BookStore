@@ -15,10 +15,10 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('book_id');
+            $table->unsignedInteger('user_id')->index();;
+            $table->unsignedInteger('book_id')->index();;
             $table->string('review');
-            $table->unsignedInteger('vote');
+            $table->decimal('vote', 3, 1);
             $table->timestamps();
         });
 

@@ -27,8 +27,17 @@ Route::get('/home/more_books/{category_id}/{page}', ['as' => 'more_books', 'uses
 
 Route::get('/db/up', 'Initialization@up');
 
-
 Route::get('/book/{book}', ['as' => 'book.show', 'uses' => 'BooksController@show']);
 
 Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
 Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
+Route::get('/books/{book}', ['as' => 'books.show', 'uses' => 'BooksController@show']);
+
+
+Route::post('/books', ['as' => 'books.store', 'uses' => 'BooksController@store']);
+Route::put('/books/{book}', ['as' => 'books.update', 'uses' => 'BooksController@update']);
+Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksController@destroy']);
+
+Route::post('/reviews/{book}', ['as' => 'reviews.store', 'uses' => 'ReviewsController@store']);
+Route::put('/reviews/{review}', ['as' => 'reviews.update', 'uses' => 'ReviewsController@update']);
+Route::delete('/reviews/{review}', ['as' => 'reviews.destroy', 'uses' => 'ReviewsController@destroy']);
