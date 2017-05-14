@@ -52,6 +52,9 @@
                 </h1>
             </div>
 
+
+            @if (Auth::check())
+
             <div class="comment-wrap">
                 <div class="comment-block">
 
@@ -68,7 +71,7 @@
                 </div>
 
             </div>
-
+            @endif
 
             @if (isset ($reviews) && $reviews->isEmpty())
                 <div class="row">
