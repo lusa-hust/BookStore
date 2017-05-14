@@ -29,7 +29,7 @@ class ReviewsController extends Controller
     {
         $this->validate($request, [
             'review' => 'required',
-            'vote' => 'required|numeric|min:0'
+            'vote' => 'required|numeric|min:0|max:10'
         ]);
         $review = [
             'review' => request('review'),
@@ -62,7 +62,7 @@ class ReviewsController extends Controller
 
         $this->validate($request, [
             'review' => 'required',
-            'vote' => 'required|numeric|min:0'
+            'vote' => 'required|numeric|min:0|max:10'
         ]);
 
         $review->update([
@@ -70,7 +70,7 @@ class ReviewsController extends Controller
             'vote' => request('vote')
         ]);
 
-
+        return redirect()->back();
     }
 
     /**

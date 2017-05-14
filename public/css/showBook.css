@@ -1,0 +1,47 @@
+.voteContainer {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+.voteScore,
+.starImg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.starImg {
+    z-index: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.voteScore {
+    color:white;
+    z-index: 1;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.starImg > svg {
+    width:100%;
+    height:100%;
+}
+
+#starAddReview {
+    padding-bottom: 10px;
+}
+.comment-wrap {
+    position: relative;
+}
+.icon-control-review{
+    position: absolute;
+    bottom: 0;
+}
+
+.icon-control-review > form {
+    display: inline-block;
+}
