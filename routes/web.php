@@ -44,3 +44,13 @@ Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksControl
 Route::post('/reviews/{book}', ['as' => 'reviews.store', 'uses' => 'ReviewsController@store']);
 Route::put('/reviews/{review}', ['as' => 'reviews.update', 'uses' => 'ReviewsController@update']);
 Route::delete('/reviews/{review}', ['as' => 'reviews.destroy', 'uses' => 'ReviewsController@destroy']);
+
+Route::get('/payment', ['as' => 'payment.index', 'uses' => 'PaymentController@index']);
+Route::get('/payment/addToCart/{book}', ['as' => 'payment.addToCart', 'uses' => 'PaymentController@addToCart']);
+Route::get('/payment/checkOut/{order}', ['as' => 'payment.checkOut', 'uses' => 'PaymentController@checkOut']);
+
+Route::get('/orders/{order}', ['as' => 'orders.show', 'uses' => 'OrdersController@show']);
+Route::delete('/orders/{order}', ['as' => 'orders.destroy', 'uses' => 'OrdersController@destroy']);
+
+Route::put('/orderRow/{orderRow}', ['as' => 'orderRows.update', 'uses' => 'OrderRowsController@update']);
+Route::delete('/orderRow/{orderRow}', ['as' => 'orderRows.destroy', 'uses' => 'OrderRowsController@destroy']);

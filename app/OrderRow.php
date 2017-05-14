@@ -8,7 +8,6 @@ class OrderRow extends Model
 {
     protected $table = 'order_rows';
 
-
     protected $with = ['book'];
 
     protected $fillable = [

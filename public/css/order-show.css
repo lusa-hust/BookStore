@@ -1,0 +1,7 @@
+td > form > input {
+    display: inline-block;
+}
+
+input {
+    width: 45px;
+}

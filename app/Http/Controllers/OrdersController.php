@@ -14,17 +14,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return auth()->user()->orders;
-    }
-
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Order $order
@@ -43,7 +32,7 @@ class OrdersController extends Controller
             ]);
         }
 
-        return view('books.show', compact('order', 'order_rows')); // TODO change view
+        return view('orders.show', compact('order', 'order_rows'));
     }
 
 
@@ -62,6 +51,6 @@ class OrdersController extends Controller
             return response(['status' => 'Order deleted']);
         }
 
-        return back();
+        return back()->with('flash', 'Order has been deleted!');
     }
 }
