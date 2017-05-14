@@ -35,3 +35,7 @@ Route::post('/books', ['as' => 'books.store', 'uses' => 'BooksController@store']
 Route::put('/books/{book}', ['as' => 'books.update', 'uses' => 'BooksController@update']);
 Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksController@destroy']);
 
+Route::post('/reviews/{book}', ['as' => 'reviews.store', 'uses' => 'ReviewsController@store']);
+Route::put('/reviews/{review}', ['as' => 'reviews.update', 'uses' => 'ReviewsController@update']);
+Route::delete('/reviews/{review}', ['as' => 'reviews.destroy', 'uses' => 'ReviewsController@destroy']);
+

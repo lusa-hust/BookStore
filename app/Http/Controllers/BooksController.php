@@ -47,7 +47,7 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|',
+            'title' => 'required',
             'author' => 'required',
             'price' => 'required|numeric|min:0',
             'qty' => 'required|integer|min:1',
