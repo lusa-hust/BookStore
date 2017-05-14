@@ -29,3 +29,6 @@ Route::get('/db/up', 'Initialization@up');
 
 
 Route::get('/book/{book}', ['as' => 'book.show', 'uses' => 'BooksController@show']);
+
+Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
+Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
