@@ -53,11 +53,10 @@ class ReviewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Book $book
      * @param  \App\Review $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book, Review $review)
+    public function update(Request $request, Review $review)
     {
         $this->authorize('update', $review);
 
@@ -77,11 +76,10 @@ class ReviewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Book $book
      * @param  \App\Review $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book, Review $review)
+    public function destroy(Review $review)
     {
         $this->authorize('delete', $review);
         $review->delete();
