@@ -19,36 +19,15 @@
 
 				<div class="colapse-category">
 					<div class="search-list-group">
+						@foreach($categories as $category)
 						<div class="search-list-group-item">
 							<label class="checkbox">
-								<input type="checkbox" name="checkbox" id="search-checkbox">
-								<i></i>Van hoc nuoc ngoai
+								<input type="checkbox" name="checkbox[]" value="{{$category->id}}" id="search-checkbox">
+								<i></i>{{$category->name}}
 							</label>
-						</div>
-						<div class="search-list-group-item">
-							<label class="checkbox">
-								<input type="checkbox" name="checkbox" id="search-checkbox">
-								<i></i>Van hoc Viet Nam
-							</label>
-						</div>
-						<div class="search-list-group-item">
-							<label class="checkbox">
-								<input type="checkbox" name="checkbox" id="search-checkbox">
-								<i></i>Khoa hoc tu nhien
-							</label>
-						</div>
-						<div class="search-list-group-item">
-							<label class="checkbox">
-								<input type="checkbox" name="checkbox" id="search-checkbox">
-								<i></i>Thieu nhi
-							</label>
-						</div>
-						<div class="search-list-group-item">
-							<label class="checkbox">
-								<input type="checkbox" name="checkbox" id="search-checkbox">
-								<i></i>Thoi su chinh tri
-							</label>
-						</div>
+						</div>   
+                        @endforeach
+						
 					</div>
 				</div>
 			</div>
@@ -99,20 +78,14 @@
 
 		<div class="list-book-search-wrap">
 			<div class="search-show-results">
-				Show result for
+				Show result for {{$keyword}}
+			</div>
+			<div class="search-show-results" >
+				There are {{count($books)}} results
 			</div>
 			<div class="search-show-results">
-				There are results
-			</div>
-			<div class="search-show-results">
-				<div class="search-item">
-					<span class="search-image">
-						<img src="https://vcdn.tikicdn.com/cache/175x175/media/catalog/product/n/h/nha-gia-kim.u48.d20160401.t175959.jpg">
-					</span>
-					<span class="search-title">Nha gia kim</span>
-					<p class="search-price">30000&nbsp;d</p>
-
-				</div>
+				@each('search.searchitem', $books, 'book')
+				
 			</div>
 			
 		</div>
@@ -120,4 +93,8 @@
 	</div>
 </div>
 
+@endsection
+
+@section('script')
+<script src="{{ asset('js/search.js') }}"></script>
 @endsection
