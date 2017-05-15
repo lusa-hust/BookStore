@@ -24,8 +24,9 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>Price</th>
-                <th>Qty</th>
-                <th> </th>
+                <th>Book Qty</th>
+                <th>Order Qty</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,44 +38,55 @@
 
                     <th scope="row"> {{$order_row->id}}</th>
 
-                    <td scope="row"> {{$order_row->book->title}}</td>
+                    <td scope="row">
+
+                        <a href="{{route('books.show', $order_row->book->id)}}">
+                            {{$order_row->book->title}}
+                        </a>
+
+                    </td>
 
                     <td scope="row"> {{$order_row->book->author}}</td>
 
                     <td scope="row"> {{$order_row->book->price}}</td>
 
+                    <td scope="row"> {{$order_row->book->qty}}</td>
+
                     <td scope="row">
 
 
-                        <form action="{{ route('orderRows.update', $order_row->id) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                        @unless($order->paid)
 
-                            {{--<button type="submit" class="glyphicon glyphicon-trash"></button>--}}
+                            <form action="{{ route('orderRows.update', $order_row->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
 
-                            <input class="inputQty" name="qty"  value={{$order_row->qty}} readonly>
+                                {{--<button type="submit" class="glyphicon glyphicon-trash"></button>--}}
 
-                            <a class="edit-orderRow">
-                                <span class="glyphicon glyphicon-edit"></span><span>Edit</span>
-                            </a>
-                        </form>
+                                <input class="inputQty" name="qty" value={{$order_row->qty}} readonly>
 
+                                <a class="edit-orderRow">
+                                    <span class="glyphicon glyphicon-edit"></span><span>Edit</span>
+                                </a>
+                            </form>
+
+                        @endunless
                     </td>
 
                     <td scope="row">
 
+                        @unless($order->paid)
+                            <form action="{{ route('orderRows.destroy', $order_row->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
 
-                        <form action="{{ route('orderRows.destroy', $order_row->id) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                                {{--<button type="submit" class="glyphicon glyphicon-trash"></button>--}}
 
-                            {{--<button type="submit" class="glyphicon glyphicon-trash"></button>--}}
-
-                            <a class="delete-orderRow">
-                                <span class="glyphicon glyphicon-trash"></span><span>Delete</span>
-                            </a>
-                        </form>
-
+                                <a class="delete-orderRow">
+                                    <span class="glyphicon glyphicon-trash"></span><span>Delete</span>
+                                </a>
+                            </form>
+                        @endunless
                     </td>
 
                     <?php
@@ -107,6 +119,51 @@
             </tbody>
         </table>
 
+        <div class="center-block">
+
+
+            @if(Session::has('err'))
+
+                <div class="alert alert-warning">
+
+                    {{ Session::get("err")}}
+
+                </div>
+
+            @endif
+
+
+            @unless($order->paid)
+
+
+
+
+                <a href="{{route('payment.checkOut', $order->id)}}" class="btn btn-success">
+
+                    Checkout
+
+                </a>
+
+
+
+            @else
+
+                <div class="alert alert-success">
+
+                    Order have been checkout !
+
+                </div>
+
+                <div>
+
+                    <a href="{{route('home')}}" class="btn btn-default"> <span class="glyphicon glyphicon-home"></span>
+                        Back to home !</a>
+                </div>
+
+            @endunless
+
+
+        </div>
     </div>
 
 

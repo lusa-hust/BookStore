@@ -6,12 +6,16 @@ $('.delete-order').on('click', function () {
 
     $(this).parent().submit();
 
+}).hover(function () {
+    $(this).parent().parent().parent().css("background-color","#ff8d7c")
+}, function () {
+    $(this).parent().parent().parent().css("background-color","transparent")
 });
 
 $(".clickable-row").click(function () {
     window.location = $(this).data("href");
 }).hover(function () {
-    $(this).css("background-color","#cfe8ff")
+    $(this).parent().css("background-color","#cfe8ff")
 }, function () {
-    $(this).css("background-color","transparent")
+    $(this).parent().css("background-color","transparent")
 });
