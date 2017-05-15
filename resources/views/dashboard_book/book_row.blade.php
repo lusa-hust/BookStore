@@ -2,7 +2,6 @@
 	<td>{{ $book->title }}</td>
 	<td>{{ $book->author }}</td>
 	<td>{{ $book->price }}</td>
-    <td>Category</td>
     <td>{{ $book->qty }}</td>
 	<td>
 		<button data-id="{{$book->id}}" type="button" class="db-edit-book btn btn-info btn-xs">Edit</button>
