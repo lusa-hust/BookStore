@@ -14,9 +14,10 @@ class CreateCategoryBookTable extends Migration
     public function up()
     {
         Schema::create('category_book', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('book_id');
             $table->unsignedInteger('category_id');
-            $table->primary('book_id', 'category_id');
+            $table->unique('book_id', 'category_id');
             $table->timestamps();
         });
 

@@ -15,7 +15,7 @@ class Book extends Model
     /**
      * Add a review to the book.
      *
-     * @param  array review
+     * @param  array review ['review', 'vote', 'user_id']
      * @return Reply
      */
     public function addReview($review)
