@@ -46,17 +46,16 @@
 <div class="container home-container">
     <div class="row">
         <div class="col-xs-3 col-md-2 category-container">
-            Categories:
             @if (isset ($categories) && $categories->isEmpty())
                 <div>There is no category yet</div>
             @else
-                <ul>
+                <ul class="nav nav-pills">
                     @foreach ($categories as $category)
                     <li>
                         @if ($category->id == $category_id)
-                            <a class="link_selected" href="/home/{{$category->id}}">{{$category->name}}</a>
+                            <a role="presentation" class="active link_selected" href="{{route('home', $category->id)}}">{{$category->name}}</a>
                         @else
-                            <a href="/home/{{$category->id}}">{{$category->name}}</a>
+                            <a role="presentation" href="{{route('home', $category->id)}}">{{$category->name}}</a>
                         @endif
                     </li>
                     @endforeach
