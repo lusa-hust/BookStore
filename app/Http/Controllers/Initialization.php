@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use App\Category;
 use App\Book;
 use App\User;
@@ -11,6 +12,7 @@ use App\User;
 class Initialization extends Controller
 {
     public function up() {
+
         $files = Array(
             'khoa-hoc-tu-nhien-nhan-van',
             'thieu-nhi',
@@ -80,7 +82,7 @@ class Initialization extends Controller
         $user = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('admin'),
+            'password' => Hash::make('admin'),
             'admin' => 1
         ]);
 
