@@ -11,3 +11,10 @@ $(document).on('click', '.db-delete-book', function(e) {
 		}
 	});
 });
+
+$(document).on('click', '#add-book-button', function (e) {
+	$("#add-book-form").submit();
+	$("#add-book-form").bind('ajax:complete', function(data) {
+		console.log(data);
+   	});
+});

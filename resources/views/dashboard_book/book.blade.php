@@ -31,7 +31,7 @@
 						</form>
 	    			</div>
 	    			<div class="pull-right">
-	    				<button type="button" class="btn btn-success">New Book</button>
+	    				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#book-modal">New Book</button>
 	    			</div>
     			</div>
     		</div>
@@ -55,6 +55,75 @@
 
     		{{ $books->links() }}
     	</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="book-modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new book</h4>
+            </div>
+            <div class="modal-body">
+                <form id="add-book-form" class="form-horizontal" action="{{ route('dashboard.book.add') }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="title">Title:</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="title" class="form-control" name="title" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="author">Author:</label>
+                        <div class="col-sm-10"> 
+                            <input type="text" id="author" class="form-control" name="author" placeholder="Enter author">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="price">Price:</label>
+                        <div class="col-sm-10"> 
+                            <input type="number" id="price" class="form-control" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="qty">Quantity:</label>
+                        <div class="col-sm-10"> 
+                            <input type="number" id="qty" class="form-control" name="qty">
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <label class="control-label col-sm-2">Categories:</label>
+                        <div class="col-sm-10">
+                            @foreach($categories as $category)
+                                <div class="checkbox">
+                                    <label><input name="categories[]" value="{{$category->id}}" type="checkbox"> {{$category->name}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="image">Cover image:</label>
+                        <div class="col-sm-10"> 
+                            <input type="file" id="image" class="form-control" name="image">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="intro">Introduction:</label>
+                        <div class="col-sm-10"> 
+                            <textarea id="intro" name="intro" class="form-control"></textarea> 
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="add-book-button" type="submit" class="btn btn-success">Add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
