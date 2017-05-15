@@ -34,6 +34,7 @@ Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManageme
 Route::post('/dashboard/book/search', ['as' => 'dashboard.book.search', 'uses' => 'BookManagement@search']);
 Route::get('/dashboard/book/delete/{id}',
 	['as' => 'dashboard.book.delete', 'uses' => 'BookManagement@delete']);
+Route::post('/dashboard/book/add', ['as' => 'dashboard.book.add', 'uses' => 'BookManagement@add']);
 Route::get('/books/{book}', ['as' => 'books.show', 'uses' => 'BooksController@show']);
 
 
