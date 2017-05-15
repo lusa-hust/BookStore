@@ -49,7 +49,6 @@ class BookManagement extends Controller
     	$image = Input::file('image');
     	$name = Storage::disk('local')->putFile('public/covers', $request->file('image'));
     	$name = substr($name, 14);
-        $data_return = Array('state' => 0);
 
     	$book = Book::create([
     		'title' => $data['title'],
@@ -66,10 +65,8 @@ class BookManagement extends Controller
     			if ($category)
     				$book->categories()->attach($category);
     		}
-
-            $data_return['state'] = 1;
     	}
 
-        return json_encode($data_return);
+        return redirect()->back();
     }
 }
