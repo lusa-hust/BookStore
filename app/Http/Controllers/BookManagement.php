@@ -69,4 +69,5 @@ class BookManagement extends Controller
 
         return redirect()->back();
     }
+
 }
