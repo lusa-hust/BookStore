@@ -22,7 +22,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $orders =  auth()->user()->orders;
+        $orders = auth()->user()->orders;
 
 
         if (request()->wantsJson()) {
@@ -38,7 +38,7 @@ class PaymentController extends Controller
     /**
      *
      *
-     * @param  \App\Book  $book
+     * @param  \App\Book $book
      * @return \Illuminate\Http\Response
      */
     public function addToCart(Book $book)
@@ -60,7 +60,7 @@ class PaymentController extends Controller
     /**
      *
      *
-     * @param  \App\Order  $order
+     * @param  \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function checkOut(Order $order)
@@ -71,8 +71,7 @@ class PaymentController extends Controller
 
         foreach ($order_rows as $order_row) {
             if ($order_row->book->qty >= $order_row->qty) {
-                $order_row->book->qty = $order_row->book->qty - $order_row->qty;
-                $order_row->book->save();
+                $order_row->book->update(['qty' => $order_row->book->qty - $order_row->qty]);
             } else {
                 $flag = true;
 
@@ -84,7 +83,6 @@ class PaymentController extends Controller
             session()->flash('err', 'Checkout not Successful !');
             return redirect()->back();
         }
-
 
 
         $order->paid = true;

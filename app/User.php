@@ -35,6 +35,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');
     }
 
+    public function getSubscribesAvailable()
+    {
+        return $this->hasMany('App\Subscribe')->where('available', true);
+    }
+
+    public function subscribes()
+    {
+        return $this->hasMany('App\Subscribe');
+    }
+
     public function orders()
     {
         return $this->hasMany('App\Order')->orderBy('created_at', 'desc');

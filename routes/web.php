@@ -65,3 +65,9 @@ Route::delete('/orders/{order}', ['as' => 'orders.destroy', 'uses' => 'OrdersCon
 
 Route::put('/orderRow/{orderRow}', ['as' => 'orderRows.update', 'uses' => 'OrderRowsController@update']);
 Route::delete('/orderRow/{orderRow}', ['as' => 'orderRows.destroy', 'uses' => 'OrderRowsController@destroy']);
+
+Route::get('/subscribes', ['as' => 'subscribes.index', 'uses' => 'SubscribesController@index']);
+Route::get('/subscribeAvailable', ['as' => 'subscribes.Available', 'uses' => 'SubscribesController@getSubscribeAvailable']);
+Route::get('/subscribes/{book}', ['as' => 'subscribes.store', 'uses' => 'SubscribesController@store']);
+Route::delete('/subscribes/{book}', ['as' => 'subscribes.destroy', 'uses' => 'SubscribesController@destroy']);
+

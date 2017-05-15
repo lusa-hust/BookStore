@@ -23,8 +23,8 @@
                 <th>Row Id</th>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Price</th>
                 <th>Book Qty</th>
+                <th>Price</th>
                 <th>Order Qty</th>
                 <th></th>
             </tr>
@@ -48,9 +48,9 @@
 
                     <td scope="row"> {{$order_row->book->author}}</td>
 
-                    <td scope="row"> {{$order_row->book->price}}</td>
-
                     <td scope="row"> {{$order_row->book->qty}}</td>
+
+                    <td scope="row"> {{$order_row->book->price}}</td>
 
                     <td scope="row">
 
@@ -69,6 +69,9 @@
                                     <span class="glyphicon glyphicon-edit"></span><span>Edit</span>
                                 </a>
                             </form>
+
+                        @else
+                            {{$order_row->qty}}
 
                         @endunless
                     </td>
@@ -102,6 +105,8 @@
 
 
             <tr>
+
+                <td scope="row"></td>
 
                 <td scope="row"></td>
 

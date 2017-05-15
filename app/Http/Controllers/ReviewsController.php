@@ -85,7 +85,7 @@ class ReviewsController extends Controller
         $review->delete();
 
         if (request()->expectsJson()) {
-            return response(['status' => 'Review deleted']);
+            return response(['status' => true]);
         }
 
         return back();
