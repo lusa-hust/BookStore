@@ -27,7 +27,7 @@ Route::post('/search', ['as' => 'search.dosearch', 'uses' => 'SearchController@s
 Route::get('/home/more_books/{category_id}/{page}', ['as' => 'more_books', 'uses' => 'HomeController@more_books']);
 
 
-Route::get('/db/up', 'Initialization@up');
+Route::get('/install', 'Initialization@up');
 
 Route::get('/book/{book}', ['as' => 'book.show', 'uses' => 'BooksController@show']);
 Route::get('/book/edit/{book}', ['as' => 'book.edit', 'uses' => 'BooksController@edit']);
