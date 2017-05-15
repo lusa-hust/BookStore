@@ -1,6 +1,14 @@
 $(document).on('click', '.ajax-load-more', function (e) {
     var category_id = $(this).data('category');
     var page = $(this).data('page');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
     $.ajax({
         url: '/home/more_books/'+ category_id + '/' + page,
     }).done(function (data) {

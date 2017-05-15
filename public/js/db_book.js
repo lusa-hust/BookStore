@@ -1,6 +1,14 @@
 $(document).on('click', '.db-delete-book', function(e) {
 	var id = $(this).data('id');
-	$.ajax({
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $.ajax({
 		type: 'GET',
 		url: '/dashboard/book/delete/' + id,
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8"
@@ -22,6 +30,13 @@ $(document).on('click', '#edit-book-button', function (e) {
 
 $(document).on('click', '.db-edit-book', function(e) {
 	var id = $(this).data('id');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 	$.ajax({
 		type: 'GET',
 		url: '/book/edit/' + id,

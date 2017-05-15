@@ -10,14 +10,14 @@
             </div>
         </div>
         <div class="col-xs-7">
-            <form class="input-group search-bar" action="/search" method="POST">
-                
+            <form class="input-group search-bar" action="{{route('search.dosearch')}}" method="POST">
+
                 <div class="input-group-btn search-panel filter-holder">
                     <select name="category" style="max-width: 100px;">
                         <option value="0">All category</option>
-                        
+
                         @foreach(App\Category::all() as $category)
-                            <option value="{{$category->id}}" > {{$category->name}}</option>    
+                            <option value="{{$category->id}}"> {{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -36,11 +36,28 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
+
+                    @if(auth()->user()->isAdmin())
+
+
+                        <li>
+                            <a href="{{ route('dashboard.user') }}">
+                                <span class="glyphicon glyphicon-wrench"> Dashboard </span>
+                            </a>
+                        </li>
+
+                    @endif
+
+
+
                     <li class="dropdown">
+
+
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="glyphicon notification"></span> <span
                                     class="caret"> </span>
                         </a>
+
 
                         <ul class="dropdown-menu dropdown-on-header" role="menu">
                             <li><a

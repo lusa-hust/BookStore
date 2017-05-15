@@ -33,21 +33,24 @@ Route::get('/book/{book}', ['as' => 'book.show', 'uses' => 'BooksController@show
 Route::get('/book/edit/{book}', ['as' => 'book.edit', 'uses' => 'BooksController@edit']);
 Route::post('/book/update', ['as' => 'book.update', 'uses' => 'BooksController@update']);
 
-Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
-Route::get('/dashboard/user/delete/{id}', ['as' => 'dashboard.user.delete', 'uses' => 'UserManagement@delete']);
-Route::get('/dashboard/user/edit/{id}', ['as' => 'dashboard.user.edit', 'uses' => 'UserManagement@edit']);
-Route::post('/dashboard/user/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
-Route::post('/dashboard/user/update', ['as' => 'dashboard.user.update', 'uses' => 'UserManagement@update']);
 
 
-Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
-Route::post('/dashboard/book/search', ['as' => 'dashboard.book.search', 'uses' => 'BookManagement@search']);
-Route::get('/dashboard/book/delete/{id}',
-	['as' => 'dashboard.book.delete', 'uses' => 'BookManagement@delete']);
-Route::post('/dashboard/book/add', ['as' => 'dashboard.book.add', 'uses' => 'BookManagement@add']);
+Route::group(['middleware' => 'auth.checkAdmin'], function () {
+    Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
+    Route::get('/dashboard/user/delete/{id}', ['as' => 'dashboard.user.delete', 'uses' => 'UserManagement@delete']);
+    Route::get('/dashboard/user/edit/{id}', ['as' => 'dashboard.user.edit', 'uses' => 'UserManagement@edit']);
+    Route::post('/dashboard/user/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
+    Route::post('/dashboard/user/update', ['as' => 'dashboard.user.update', 'uses' => 'UserManagement@update']);
+
+
+    Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
+    Route::post('/dashboard/book/search', ['as' => 'dashboard.book.search', 'uses' => 'BookManagement@search']);
+    Route::get('/dashboard/book/delete/{id}',
+        ['as' => 'dashboard.book.delete', 'uses' => 'BookManagement@delete']);
+    Route::post('/dashboard/book/add', ['as' => 'dashboard.book.add', 'uses' => 'BookManagement@add']);
+});
+
 Route::get('/books/{book}', ['as' => 'books.show', 'uses' => 'BooksController@show']);
-
-
 Route::post('/books', ['as' => 'books.store', 'uses' => 'BooksController@store']);
 Route::put('/books/{book}', ['as' => 'books.update', 'uses' => 'BooksController@update']);
 Route::delete('/books/{book}', ['as' => 'books.destroy', 'uses' => 'BooksController@destroy']);

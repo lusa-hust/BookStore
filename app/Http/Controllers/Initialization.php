@@ -96,7 +96,7 @@ class Initialization extends Controller
         echo "<b>User admin created</b><br>";
 
         echo "<b>User admin info:</b><br>";
-        echo "User:admin; password:admin; <br>";
+        echo "User:admin@admin.com; password:admin; <br>";
 
     }
 

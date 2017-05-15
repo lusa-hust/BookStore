@@ -49,7 +49,7 @@
             @if (isset ($categories) && $categories->isEmpty())
                 <div>There is no category yet</div>
             @else
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills nav-stacked">
                     @foreach ($categories as $category)
                     <li>
                         @if ($category->id == $category_id)

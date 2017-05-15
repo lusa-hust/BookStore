@@ -8,13 +8,13 @@
 <div class="container">
     <div class="row">
     	<div class="col-xs-3 col-md-2">
-    		<ul>
-    			<li>
-    				<a href="/dashboard/user">Users</a>
-    			</li>
-    			<li>
-    				<a href="/dashboard/book">Books</a>
-    			</li>
+    		<ul class="nav nav-pills nav-stacked" >
+				<li>
+					<a role="presentation" class="active link_selected" href="{{route('dashboard.user')}}">Users</a>
+				</li>
+				<li>
+					<a role="presentation" href="{{route('dashboard.book')}}">Books</a>
+				</li>
     		</ul>
     	</div>
     	<div class="col-xs-9 col-md-10">
