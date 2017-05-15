@@ -1,0 +1,146 @@
+.img-thumbnail,
+body {
+    background-color: #fff
+}
+
+body {
+    min-height: 100%;
+    line-height: normal;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f4f4;
+    font-size: 14px;
+    color: #333;
+}
+
+*,
+:after,
+:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.search-panel .search-panel-info{
+	line-height: 20px;
+    display: block;
+    color: #000;
+    font-size: 14px;
+    padding: 18px 20px 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    background-color: #fff;
+	border-top: 2px solid #f7f7f7;
+
+}
+
+.search-panel {
+	line-height: normal;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+	border-top: 2px solid #f7f7f7;
+}
+
+.search-list-group-item {
+    font-size: 13px;
+    padding: 2px 20px;
+    display: block;
+    position: relative;
+    border-radius: 0;
+    border-top: none;
+    margin-bottom: 0;
+}
+
+.search-list-group {
+	padding-bottom: 15px;
+}
+
+.search-panel-title {
+	line-height: 20px;
+    display: block;
+    color: #000;
+    font-size: 14px;
+    padding: 18px 20px 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.list-book-search-wrap {
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    border-radius: 0 4px 4px 0;
+
+    width: 885px;
+    float: right;
+    vertical-align: top;
+    overflow: hidden;
+    display: block;
+    background-color: #fff
+}
+
+.search-sidebar {
+	width: 253px;
+    float: left;
+    vertical-align: top;
+    border-radius: 4px 0 0 4px;
+    overflow: hidden;
+    background-color: #fff
+}
+
+.search-container {
+    width: 1170px;
+    max-width: none!important;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.search-show-results {
+	position: relative;
+    padding: 13px 20px 7px 13px;	
+	border: 0!important;
+}
+ 	
+.search-item {
+	 background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 0 0 25px;
+    border: 1px solid transparent;
+    position: relative;
+    max-width: 100%;
+}
+
+.search-item:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+   
+}
+
+.search-title {
+	display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    margin: 15px auto 0;
+    letter-spacing: .1px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    color: #242424;
+}
+
+#seach-checkbox {
+	margin-left: 0px;
+}
