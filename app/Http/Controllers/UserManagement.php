@@ -25,8 +25,9 @@ class UserManagement extends Controller
     	return view('dashboard_user.user')->with('users', $users);
     }
 
-    public function delete(User $user) {
+    public function delete($id) {
     	$data_return = Array('state' => 0);
+    	$user = User::find($id);
     	if (!empty($user)) {
     		$user->delete();
     		$data_return['state'] = 1;
