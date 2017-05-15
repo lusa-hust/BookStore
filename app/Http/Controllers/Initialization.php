@@ -40,24 +40,25 @@ class Initialization extends Controller
                 foreach ($books as $book) {
                     echo $book->title.": ";
                     // insert book record.
+                    // copy file
+                    $src = 'crawl-data-book/images-'.$file.'/'.$book->image_name;
+                    echo $src."</br>";
+                    try{
+                        Storage::disk('local')->copy($src, 'public/covers/'.$book->image_name);
+                    } catch (Exception $e) { 
+                        echo "Cannot copy " . $src . ' to public/covers/'.$book->image_name;
+                        continue;
+                    }
                     $bookrc = Book::create([
                         'title' => $book->title,
                         'author' => $book->author,
                         'price' => (int) $book->price,
                         'qty' => rand(3, 100),
-                        'description' => $book->intro
+                        'description' => $book->intro,
+                        'image' => $book->image_name
                     ]);
 
                     $bookrc->categories()->attach($category->id);
-
-                    // copy file
-                    $src = 'crawl-data-book/images-'.$file.'/'.$book->image_name;
-                    echo $src."</br>";
-                    try{
-                        Storage::disk('local')->copy($src, 'public/covers/'.$bookrc->id.'.jpg');
-                    } catch (Exception $e) { 
-                        echo "Cannot copy " . $src . ' to public/covers/'.$bookrc->id.'.jpg';
-                    }
                     
                 }
                 
