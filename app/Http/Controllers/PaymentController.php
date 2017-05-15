@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentController extends Controller
 {
@@ -80,7 +81,8 @@ class PaymentController extends Controller
         }
 
         if ($flag) {
-            return redirect()->back()->with('flash', 'Checkout Not Successful !!');
+            session()->flash('err', 'Checkout not Successful !');
+            return redirect()->back();
         }
 
 
@@ -88,7 +90,8 @@ class PaymentController extends Controller
         $order->paid = true;
         $order->save();
 
-        return redirect()->back()->with('flash', 'Checkout Successful !!');
+
+        return redirect()->back();
     }
 
 

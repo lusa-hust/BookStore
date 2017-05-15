@@ -29,16 +29,16 @@
                 @foreach($orders as $order)
 
 
-                    <tr class='clickable-row' data-href='{{route('orders.show', $order->id)}}'>
-                        <th scope="row"> {{$order->id}}</th>
+                    <tr >
+                        <th scope="row" class='clickable-row' data-href='{{route('orders.show', $order->id)}}'> {{$order->id}}</th>
 
                         @if ($order->paid)
 
-                            <td><span style="color: green"> PAID </span></td>
+                            <td class='clickable-row' data-href='{{route('orders.show', $order->id)}}'> <span style="color: green"> PAID </span></td>
 
                         @else
 
-                            <td><span style="color: red"> NOT PAID </span></td>
+                            <td class='clickable-row' data-href='{{route('orders.show', $order->id)}}'><span style="color: red"> NOT PAID </span></td>
 
                         @endif
 
