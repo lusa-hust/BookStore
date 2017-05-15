@@ -10,17 +10,21 @@
             </div>
         </div>
         <div class="col-xs-7">
-            <form class="input-group search-bar">
+            <form class="input-group search-bar" action="/search" method="POST">
+                
                 <div class="input-group-btn search-panel filter-holder">
-                    <select name="category">
-                        <option>All category</option>
-                        <option>Category 1</option>
+                    <select name="category" style="max-width: 100px;">
+                        <option value="0">All category</option>
+                        
+                        @foreach(App\Category::all() as $category)
+                            <option value="{{$category->id}}" > {{$category->name}}</option>    
+                        @endforeach
                     </select>
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="text" class="form-control" name="keyword" placeholder="Search term...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span
+                    <button class="btn btn-default" type="submit"><span
                                 class="glyphicon glyphicon-search"></span></button>
                 </span>
             </form>

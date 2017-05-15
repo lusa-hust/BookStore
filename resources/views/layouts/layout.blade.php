@@ -28,7 +28,7 @@
     <div id="app">
         @include('layouts.header')
         @yield('content')
-        {{--@include('layouts.footer')--}}
+        @include('layouts.footer')
     </div>
 
     <!-- Scripts -->

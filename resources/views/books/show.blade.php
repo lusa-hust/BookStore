@@ -12,7 +12,7 @@
             <div class="col-md-4 ">
                 <div class="bookcover-container">
 
-                    <img class="center-block" src={{'/storage/covers/'.$book->id.'.jpg'}} alt="">
+                    <img class="center-block" src={{'/storage/covers/'.$book->image}} alt="">
 
                 </div>
 
