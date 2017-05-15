@@ -42,7 +42,6 @@
     						<th>Title</th>
     						<th>Author</th>
     						<th>Price</th>
-                            <th>Category</th>
                             <th>Qty</th>
     						<th>...</th>
     					</tr>
