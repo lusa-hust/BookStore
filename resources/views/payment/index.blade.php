@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container payment-container">
         <h1>Order List</h1>
 
         @if ($orders->isEmpty())
