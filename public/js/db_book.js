@@ -14,7 +14,28 @@ $(document).on('click', '.db-delete-book', function(e) {
 
 $(document).on('click', '#add-book-button', function (e) {
 	$("#add-book-form").submit();
-	$("#add-book-form").bind('ajax:complete', function(data) {
-		console.log(data);
-   	});
+});
+
+$(document).on('click', '#edit-book-button', function (e) {
+	$("#edit-book-form").submit();
+});
+
+$(document).on('click', '.db-edit-book', function(e) {
+	var id = $(this).data('id');
+	$.ajax({
+		type: 'GET',
+		url: '/book/edit/' + id,
+		headers: {
+			Accept: 'application/json'
+		}		
+	}).done(function(data) {
+		if (data.hasOwnProperty('html')) {
+			$('#app').append(data.html);
+			$('#edit-book-modal').modal();
+		}
+	});
+});
+
+$(document).on('hidden.bs.modal', '#edit-book-modal', function (e) {
+	$('#edit-book-modal').remove();
 });

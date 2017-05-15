@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 use Exception;
@@ -15,7 +16,7 @@ class BooksController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.checkAdmin')->except(['index', 'show']);
+        //$this->middleware('auth.checkAdmin')->except(['index', 'show']);
     }
 
     /**
@@ -101,9 +102,32 @@ class BooksController extends Controller
      * @param  \App\Book $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Request $request, Book $book)
     {
+        $categories = Category::all();
+        $book_categories = $book->categories;
+        $check = Array();
 
+        foreach($categories as $c) {
+            $tmp = ' ';
+            foreach ($book_categories as $bc) {
+                if ($c->id == $bc->id) {
+                    $tmp = 'checked';
+                    break;
+                }
+            }
+
+            $check[] = $tmp;
+        }
+        $html = '';
+        if (request()->wantsJson()) {
+            $html .= view('books/edit_modal', compact('categories', 'book', 'check'));
+            return response()->json(['status'=> true, 'html'=>$html]);
+        }
+
+        return response()->json([
+            'status' => false
+        ]);
     }
 
     /**
@@ -113,22 +137,61 @@ class BooksController extends Controller
      * @param  \App\Book $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request)
     {
         $this->validate($request, [
+            'id' => 'required',
             'title' => 'required|',
             'author' => 'required',
             'price' => 'required|numeric|min:0',
             'qty' => 'required|integer|min:1',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'categories' => 'required'
         ]);
 
-        $book->update([
-            'price' => request('price'),
-            'qty' => request('qty'),
-            'description' => request('description'),
-        ]);
+        $book = Book::find(request('id'));
+        $input = $request->all();
+        
+        if (!empty($intput['image'])) {
+            $image = Input::file('image');
+            $name = Storage::disk('local')->putFile('public/covers', $request->file('image'));
+            $name = substr($name, 14);
+            $book->update([
+                'title' => request('title'),
+                'author' => request('author'),
+                'price' => request('price'),
+                'qty' => request('qty'),
+                'description' => request('description'),
+                'image' => $name
+            ]);
+        } else {
+            $book->update([
+                'title' => request('title'),
+                'author' => request('author'),
+                'price' => request('price'),
+                'qty' => request('qty'),
+                'description' => request('description')
+            ]);
+        }
+
+        
         $book->save();
+
+        $categories = $book->categories;
+
+        $old_id = Array();
+        foreach ($categories as $category) {
+            $old_id[] = $category->id;
+            if (!in_array($category->id, $input['categories'])) {
+                $book->categories()->detach($category->id);
+            }
+        }
+
+        foreach($input['categories'] as $id) {
+            if (!in_array($id, $old_id)) {
+                $book->categories()->attach($id);
+            }
+        }
 
         if (request()->wantsJson()) {
             return response()->json([
@@ -136,7 +199,6 @@ class BooksController extends Controller
                 'book' => $book
             ]);
         }
-
 
         return redirect()->back()->with('flash', 'Book has been Updated !');
     }

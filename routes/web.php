@@ -21,15 +21,22 @@ Route::get('/', function () {
     return Redirect::route('home');
 });
 
-
 Route::get('/home/more_books/{category_id}/{page}', ['as' => 'more_books', 'uses' => 'HomeController@more_books']);
 
 
 Route::get('/db/up', 'Initialization@up');
 
 Route::get('/book/{book}', ['as' => 'book.show', 'uses' => 'BooksController@show']);
+Route::get('/book/edit/{book}', ['as' => 'book.edit', 'uses' => 'BooksController@edit']);
+Route::post('/book/update', ['as' => 'book.update', 'uses' => 'BooksController@update']);
 
 Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
+Route::get('/dashboard/user/delete/{id}', ['as' => 'dashboard.user.delete', 'uses' => 'UserManagement@delete']);
+Route::get('/dashboard/user/edit/{id}', ['as' => 'dashboard.user.edit', 'uses' => 'UserManagement@edit']);
+Route::post('/dashboard/user/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
+Route::post('/dashboard/user/update', ['as' => 'dashboard.user.update', 'uses' => 'UserManagement@update']);
+
+
 Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
 Route::post('/dashboard/book/search', ['as' => 'dashboard.book.search', 'uses' => 'BookManagement@search']);
 Route::get('/dashboard/book/delete/{id}',

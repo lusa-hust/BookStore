@@ -22,15 +22,13 @@
     		<div class="row">
     			<div class="col-xs-12">
     				<div class="pull-left">
-	    				<form class="form-inline">
+	    				<form class="form-inline" method="POST" action="{{ route('dashboard.user.search') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 						  	<div class="form-group">
 						    	<input type="text" class="form-control dashboard-search" name="keyword" placeholder="Search a user by name or email">
 						  	</div>
 						  	<button type="submit" class="btn btn-default">Search</button>
 						</form>
-	    			</div>
-	    			<div class="pull-right">
-	    				<button type="button" class="btn btn-success">New User</button>
 	    			</div>
     			</div>
     		</div>
@@ -57,5 +55,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/db_user.js') }}"></script>
 @endsection
