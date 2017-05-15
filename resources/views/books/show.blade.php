@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('title_page')
+
+    <title>Detail Book {{$book->title}}</title>
+
+@endsection
 
 @section('content')
     <div class="container">
@@ -21,11 +27,32 @@
                     <span>{{$book->author}}</span>
                 </div>
 
-                <div id="bookPrice">
-                    <span>{{$book->price}}</span>
+                <div id="bookQty">
+                    <span class="title">Qty: </span>
+                    <span>{{$book->qty}}</span>
                 </div>
 
+
+                <div id="bookPrice">
+                    <span class="title">Price: </span>
+                    <span>{{$book->price}} </span>
+
+                    @if ($book->qty > 0)
+                        <a href="{{route('payment.addToCart', $book->id)}}"
+                           class="glyphicon glyphicon-shopping-cart"> Buy</a>
+
+                    @else
+
+                        <a href="#"
+                           class="glyphicon glyphicon-plus"> Subcribe</a>
+
+                    @endif
+
+                </div>
+
+
                 <div id="bookDescription">
+                    <h3>Description</h3>
                     <span>{{$book->description}}</span>
                 </div>
 
@@ -179,14 +206,15 @@
 
                         <input id="starVoteValueEdit" name="vote" type="hidden" value="-1">
 
-                        <textarea name="review" id="reviewEditContent" cols="30" rows="3" placeholder="Add Review..."></textarea>
+                        <textarea name="review" id="reviewEditContent" cols="30" rows="3"
+                                  placeholder="Add Review..."></textarea>
 
 
                         <button type="submit" class="btn btn-sm btn-primary" id="edit-btn">Edit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

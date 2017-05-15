@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->decimal('price', 10, 2);
             $table->integer('qty');
             $table->timestamps();
-            $table->unique('title', 'author');
+//            $table->unique('title', 'author');
         });
     }
 

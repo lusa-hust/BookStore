@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->orderBy('created_at', 'desc');
     }
 
     public function isAdmin()
