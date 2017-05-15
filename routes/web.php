@@ -21,7 +21,6 @@ Route::get('/', function () {
     return Redirect::route('home');
 });
 
-
 Route::get('/home/more_books/{category_id}/{page}', ['as' => 'more_books', 'uses' => 'HomeController@more_books']);
 
 
@@ -32,6 +31,9 @@ Route::get('/book/edit/{book}', ['as' => 'book.edit', 'uses' => 'BooksController
 Route::post('/book/update', ['as' => 'book.update', 'uses' => 'BooksController@update']);
 
 Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
+Route::post('/dashboard/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
+
+
 Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
 Route::post('/dashboard/book/search', ['as' => 'dashboard.book.search', 'uses' => 'BookManagement@search']);
 Route::get('/dashboard/book/delete/{id}',

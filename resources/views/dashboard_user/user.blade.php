@@ -22,7 +22,8 @@
     		<div class="row">
     			<div class="col-xs-12">
     				<div class="pull-left">
-	    				<form class="form-inline">
+	    				<form class="form-inline" method="POST" action="{{ route('dashboard.user.search') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 						  	<div class="form-group">
 						    	<input type="text" class="form-control dashboard-search" name="keyword" placeholder="Search a user by name or email">
 						  	</div>
