@@ -35,4 +35,60 @@ class UserManagement extends Controller
 
     	return response()->json($data_return);
     }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        $html = '';
+        if (request()->wantsJson()) {
+            $html .= view('dashboard_user/edit_modal', compact('user'));
+            return response()->json(['status'=> true, 'html'=>$html]);
+        }
+
+        return response()->json([
+            'status' => false
+        ]);
+    }
+
+
+    public function update(Request $request) {
+    	$this->validate($request, [
+            'id' => 'required',
+            'name' => 'required|',
+            'email' => 'required'
+        ]);
+
+    	$input = $request->all();
+    	$user = User::find($input['id']);
+
+    	if (empty($user))
+    		return redirect()->back();
+
+    	$admin = isset($input['admin']) ? 1 : 0;
+
+    	if (!empty($input['password']) && !empty($input['confirm_password'])) {
+    		if ($input['password'] != $input['confirm_password']) {
+    			return redirect()->back();
+    		} else {
+    			$user->update([
+	    			'name' => $input['name'],
+	    			'email' => $input['email'],
+	    			'password' => bcrypt($input['password']),
+	    			'admin' => $admin
+	    		]);
+    		}
+    		
+    	} else {
+    		$user->update([
+	    			'name' => $input['name'],
+	    			'email' => $input['email'],
+	    			'admin' => $admin
+	    		]);
+    	}
+
+    	$user->save();
+
+    	return redirect()->back();
+    }
 }

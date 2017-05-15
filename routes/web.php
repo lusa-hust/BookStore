@@ -32,7 +32,9 @@ Route::post('/book/update', ['as' => 'book.update', 'uses' => 'BooksController@u
 
 Route::get('/dashboard/user', ['as' => 'dashboard.user', 'uses' => 'UserManagement@index']);
 Route::get('/dashboard/user/delete/{id}', ['as' => 'dashboard.user.delete', 'uses' => 'UserManagement@delete']);
-Route::post('/dashboard/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
+Route::get('/dashboard/user/edit/{id}', ['as' => 'dashboard.user.edit', 'uses' => 'UserManagement@edit']);
+Route::post('/dashboard/user/search', ['as' => 'dashboard.user.search', 'uses' => 'UserManagement@search']);
+Route::post('/dashboard/user/update', ['as' => 'dashboard.user.update', 'uses' => 'UserManagement@update']);
 
 
 Route::get('/dashboard/book', ['as' => 'dashboard.book', 'uses' => 'BookManagement@index']);
