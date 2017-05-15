@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Book;
+use App\User;
 
 class Initialization extends Controller
 {
@@ -18,7 +19,18 @@ class Initialization extends Controller
             'van-hoc-viet-nam'
         );
 
+        if (Book::count()) {
+            echo "The book table is not emtpy. There are ".Book::count()." records<br>";
+            echo "Abort";
+            return;
+        }
+
         $nBooks = 0;
+        // delete directory
+        Storage::disk('local')->deleteDirectory('public/covers');
+
+        // make new directory
+        Storage::disk('local')->makeDirectory('public/covers');
 
         foreach ($files as $file) {
             $contents = Storage::disk('local')->get('crawl-data-book/'.$file.'.json');
@@ -32,9 +44,6 @@ class Initialization extends Controller
                 // insert category
                 $category_name = $books[0]->category;
                 $category = Category::create(['name' => $category_name]);
-
-                // make new directory
-                Storage::disk('local')->makeDirectory('public/covers');
 
                 // insert book
                 foreach ($books as $book) {
@@ -65,7 +74,17 @@ class Initialization extends Controller
             }
         }
 
-        echo "<b>Done. Init ".$nBooks." records</b>";
+        echo "<b>Done. Init ".$nBooks." records</b><br>";
+
+        echo "<h2>Create admin account<h2>";
+        $user = User::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'admin' => 1
+        ]);
+
+        echo "<b>User admin created</b><br>";
     }
 
 
