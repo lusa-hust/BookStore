@@ -14,10 +14,11 @@ class CreateOrderRowsTable extends Migration
     public function up()
     {
         Schema::create('order_rows', function (Blueprint $table) {
-            $table->unsignedInteger('book_id');
-            $table->unsignedInteger('order_id');
+            $table->increments('id');
+            $table->unsignedInteger('book_id')->index();;
+            $table->unsignedInteger('order_id')->index();;
             $table->unsignedInteger('qty');
-            $table->primary('book_id', 'order_id');
+            $table->unique(['book_id', 'order_id']);
             $table->timestamps();
         });
 

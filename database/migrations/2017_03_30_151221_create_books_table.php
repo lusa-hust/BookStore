@@ -17,9 +17,12 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('author');
+            $table->text('description')->nullable(true);
             $table->decimal('price', 10, 2);
             $table->integer('qty');
             $table->timestamps();
+            $table->string('image');
+//            $table->unique(['title', 'author']);
         });
     }
 

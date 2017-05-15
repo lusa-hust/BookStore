@@ -9,12 +9,23 @@ class Book extends Model
     protected $table = 'books';
 
     protected $fillable = [
-        'title', 'author', 'price', 'qty', 'introduction'
+        'title', 'author', 'price', 'qty', 'description', 'image'
     ];
+
+    /**
+     * Add a review to the book.
+     *
+     * @param  array review ['review', 'vote', 'user_id']
+     * @return Reply
+     */
+    public function addReview($review)
+    {
+        return $this->reviews()->create($review);
+    }
 
     public function reviews()
     {
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review')->orderBy('created_at', 'desc');
     }
 
     public function orderRows()
