@@ -16,7 +16,7 @@
                     <select name="category" style="max-width: 100px;">
                         <option value="0">All category</option>
                         
-                        @foreach($categories as $category)
+                        @foreach(App\Category::all() as $category)
                             <option value="{{$category->id}}" > {{$category->name}}</option>    
                         @endforeach
                     </select>
