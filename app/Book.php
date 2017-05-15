@@ -71,6 +71,15 @@ class Book extends Model
                         ]);
                     }
                 }
+            } else {
+                if ($book->subscribes->isNotEmpty()) {
+
+                    foreach ($book->subscribes as $subscribe) {
+                        $subscribe->update([
+                            'available' => false
+                        ]);
+                    }
+                }
             }
         });
 
@@ -82,6 +91,15 @@ class Book extends Model
                     foreach ($book->subscribes as $subscribe) {
                         $subscribe->update([
                             'available' => true
+                        ]);
+                    }
+                }
+            } else {
+                if ($book->subscribes->isNotEmpty()) {
+
+                    foreach ($book->subscribes as $subscribe) {
+                        $subscribe->update([
+                            'available' => false
                         ]);
                     }
                 }

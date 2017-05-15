@@ -5,3 +5,7 @@
 .dashboard-table {
 	margin-top: 30px;
 }
+
+.link_selected {
+	color: hotpink;
+}

@@ -1,6 +1,14 @@
 $(document).on('click', '.user-delete-button', function(e) {
 	var id = $(this).data('id');
-	$.ajax({
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $.ajax({
 		type: 'GET',
 		url: '/dashboard/user/delete/' + id,
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -16,7 +24,15 @@ $(document).on('click', '.user-delete-button', function(e) {
 
 $(document).on('click', '.user-edit-button', function(e) {
 	var id = $(this).data('id');
-	$.ajax({
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $.ajax({
 		type: 'GET',
 		url: '/dashboard/user/edit/' + id,
 		headers: {

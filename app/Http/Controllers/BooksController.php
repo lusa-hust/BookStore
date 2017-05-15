@@ -134,8 +134,8 @@ class BooksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Book $book
      * @return \Illuminate\Http\Response
+     * @internal param Book $book
      */
     public function update(Request $request)
     {
