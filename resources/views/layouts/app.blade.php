@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="subscribe-not-href" content="{{ route('subscribes.Available') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -85,6 +86,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/subscribe-not.js') }}"></script>
     @yield('script')
 </body>
 </html>

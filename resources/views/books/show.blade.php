@@ -44,7 +44,7 @@
                     @else
 
                         <a href="{{route('subscribes.store', $book->id)}}"
-                           class="glyphicon glyphicon-plus"> Subscribe</a>
+                           class="glyphicon glyphicon-heart-empty"> Subscribe</a>
 
                     @endif
 

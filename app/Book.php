@@ -23,6 +23,26 @@ class Book extends Model
         return $this->reviews()->create($review);
     }
 
+    public function addSubscribe($subscribe)
+    {
+        return $this->subscribes()->create($subscribe);
+    }
+
+    public function getSubscribe($user)
+    {
+        return $this->subscribes()->where('user_id', $user->id);
+    }
+
+    public function removeSubscribe($user)
+    {
+        return $this->getSubscribe($user)->delete();
+    }
+
+    public function subscribes()
+    {
+        return $this->hasMany('App\Subscribe');
+    }
+
     public function reviews()
     {
         return $this->hasMany('App\Review')->orderBy('created_at', 'desc');
@@ -36,5 +56,37 @@ class Book extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Category', 'category_book');
+    }
+
+    protected static function boot()
+    {
+        static::saved(function ($book) {
+            if ($book->qty > 0) {
+
+                if ($book->subscribes->isNotEmpty()) {
+
+                    foreach ($book->subscribes as $subscribe) {
+                        $subscribe->update([
+                            'available' => true
+                        ]);
+                    }
+                }
+            }
+        });
+
+        static::updated(function ($book) {
+            if ($book->qty > 0) {
+
+                if ($book->subscribes->isNotEmpty()) {
+
+                    foreach ($book->subscribes as $subscribe) {
+                        $subscribe->update([
+                            'available' => true
+                        ]);
+                    }
+                }
+            }
+        });
+
     }
 }
