@@ -18,7 +18,7 @@ class CreateOrderRowsTable extends Migration
             $table->unsignedInteger('book_id')->index();;
             $table->unsignedInteger('order_id')->index();;
             $table->unsignedInteger('qty');
-            $table->unique('book_id', 'order_id');
+            $table->unique(['book_id', 'order_id']);
             $table->timestamps();
         });
 
