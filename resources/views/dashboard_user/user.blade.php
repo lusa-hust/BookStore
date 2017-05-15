@@ -30,9 +30,6 @@
 						  	<button type="submit" class="btn btn-default">Search</button>
 						</form>
 	    			</div>
-	    			<div class="pull-right">
-	    				<button type="button" class="btn btn-success">New User</button>
-	    			</div>
     			</div>
     		</div>
     		<div class="dashboard-table">
@@ -58,5 +55,5 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/db_user.js') }}"></script>
 @endsection

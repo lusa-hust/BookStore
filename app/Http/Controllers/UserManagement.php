@@ -24,4 +24,14 @@ class UserManagement extends Controller
     								->paginate($this->user_per_page);
     	return view('dashboard_user.user')->with('users', $users);
     }
+
+    public function delete(User $user) {
+    	$data_return = Array('state' => 0);
+    	if (!empty($user)) {
+    		$user->delete();
+    		$data_return['state'] = 1;
+    	}
+
+    	return response()->json($data_return);
+    }
 }
