@@ -22,6 +22,8 @@ Route::get('/', function (){
     return Redirect::route('home');
 });
 
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
+
 Route::get('/home/more_books/{category_id}/{page}', ['as' => 'more_books', 'uses' => 'HomeController@more_books']);
 
 Route::get('/db/up', 'Initialization@up');
